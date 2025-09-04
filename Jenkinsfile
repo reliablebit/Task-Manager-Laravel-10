@@ -3,7 +3,15 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        echo 'Code is checked out by Jenkins automatically!'
+        echo 'Code already checked out by SCM'
+      }
+    }
+    stage('Install Dependencies') {
+      steps {
+        sh '''
+          php -v
+          composer install --no-interaction --no-progress
+        '''
       }
     }
     stage('List Files') {
